@@ -1,0 +1,39 @@
+.inventory-container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow-y: scroll;
+    max-width: 240px;
+    background-color: rgb(20 83 45);
+}
+
+.pokemon-in-inventory{
+    height: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid;
+    color: white;
+}
+
+.img-pokemon-inventory{
+    max-height: 100%;
+}
+
+@media (max-width: 768px) {
+    .inventory-container{
+        max-width: unset;
+        flex-direction: row;
+        overflow-x: scroll;
+        max-height: 70px;
+        width: 100%;
+    }
+    .pokemon-in-inventory{
+        border-bottom: unset;
+        border-right: 1px solid;
+        padding: 10px;
+    }
+}

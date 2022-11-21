@@ -1,0 +1,10 @@
+.home_container{
+    display:flex;
+    height:100vh;
+}
+
+@media (max-width: 768px) {
+    .home_container{
+        flex-direction:column;
+    }
+}
