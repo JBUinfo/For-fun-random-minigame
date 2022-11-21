@@ -7,6 +7,8 @@ Here is my TODO list:
 
     - Apply the rules described here: https://alexkondov.com/tao-of-react/
     - Clean code
+    - Indent code (With Prettier VScode extension)
+    - Write comments
     - Use typescript in react and node
     - Make use of env.* files
     - Change styles.css to modules.css
