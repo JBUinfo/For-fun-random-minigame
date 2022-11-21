@@ -10,6 +10,7 @@ Here is my TODO list:
     - Make use of env.* files
     - Change styles.css to modules.css
     - Compile some states in Contexts
+    - React.Portals?
     - Apply testing (Cypress, Jest, native NodeJS...)
         -Unit tests
         -Integration tests
