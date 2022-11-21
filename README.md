@@ -6,6 +6,7 @@ On the other hand, i want to apply things i have never used (testing, typescript
 Here is my TODO list:
 
     - Apply the rules described here: https://alexkondov.com/tao-of-react/
+    - Clean code
     - Use typescript in react and node
     - Make use of env.* files
     - Change styles.css to modules.css
