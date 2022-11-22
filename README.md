@@ -2,7 +2,7 @@
 I created this minigame in 29 hours during several [twitch streamings](https://www.twitch.tv/jebx_).
 I want to update and improve the code with my followers and see how much the code can change.
 
-On the other hand, i want to apply things i have never used (testing, typescript in node, Vite...).
+On the other hand, i want to apply things i have never used (NestJS, Vite, css-modules, testing, Cypress, Jest...).
 Here is my TODO list:
 
     Done - 2.0 - Indent code (With Prettier VScode extension)
