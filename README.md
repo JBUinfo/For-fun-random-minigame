@@ -7,14 +7,15 @@ Here is my TODO list:
 
     Done - 2.0 - Indent code (With Prettier VScode extension)
     Done - 2.0 - Change styles.css to modules.css
+    Done - 2.0 - React.render for ContextMenu
+    Done - 2.0 - Compile some states and use Context with Reducer
     - Apply the rules described here: https://alexkondov.com/tao-of-react/
-    - Optimize react renders: https://blog.axlight.com/posts/4-options-to-prevent-extra-rerenders-with-react-context/
+    - Optimize react renders:   https://blog.axlight.com/posts/4-options-to-prevent-extra-rerenders-with-react-context/
+                                https://medium.com/@lorenzocm/react-memo-o-usememo-sabes-diferenciarlos-y-como-utilizarlos-f2049d41f708
     - Clean code
     - Write comments
     - Use typescript in react and node
     - Make use of env.* files
-    - Compile some states in Contexts
-    - React.Portals?
     - Apply testing (Cypress, Jest, native NodeJS...)
         -Unit tests
         -Integration tests
