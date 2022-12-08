@@ -34,7 +34,7 @@ app.post("/login", async (req, res) => {
   };
   const user = await resolvers.login(p);
   const token = jwt.sign(user, process.env.SECRET_JWT, { expiresIn: "2 days" });
-  res.send({ data: token });
+  res.send({ data: token, error: null });
 });
 
 app.post("/register", async (req, res) => {
@@ -46,7 +46,7 @@ app.post("/register", async (req, res) => {
   };
   const user = await resolvers.insertUser(p);
   const token = jwt.sign(user, process.env.SECRET_JWT, { expiresIn: "2 days" });
-  res.send({ data: token });
+  res.send({ data: token, error: null });
 });
 
 app.post("/createUser", async (req, res) => {

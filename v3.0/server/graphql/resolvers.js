@@ -208,7 +208,7 @@ export const getResolvers = (database) => {
           querys.selectPokemonsFromUserBattle,
           [user_id],
           (err, data) => {
-            if (err) resolve({ data: null, error: 1 });
+            if (err) resolve({ data: [], error: 1 });
             resolve({ data: data, error: err });
           }
         );
@@ -226,11 +226,11 @@ export const getResolvers = (database) => {
           querys.selectEnemiesPokemons,
           [randoms[0].pokemon_id, randoms[1].pokemon_id, randoms[2].pokemon_id],
           (err, data) => {
-            if (err) resolve({ data: null, error: 1 });
+            if (err) resolve({ data: [], error: 1 });
             randoms[0] = { ...randoms[0], ...data[0] };
             randoms[1] = { ...randoms[1], ...data[1] };
             randoms[2] = { ...randoms[2], ...data[2] };
-            resolve({ data: randoms, error: err });
+            resolve({ data: randoms, error: null });
           }
         );
       });

@@ -1,34 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import React, { useReducer } from "react";
+import HomePage from "@pages/home/home";
+import LoginPage from "@pages/login/login";
+import Modal from "@components/modal/modal.component";
+import {
+  GlobalContext,
+  initialState,
+  IInitialState,
+  reducer,
+  IAction,
+} from "./contexts/contexts";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function App(): JSX.Element {
+  const [state, dispatch]: Array<IInitialState | React.Dispatch<IAction>> =
+    useReducer(reducer, initialState);
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    <>
+      <GlobalContext.Provider value={{ state, dispatch }}>
+        {state.UserID !== -1 ? (
+          <>
+            <Modal />
+            <HomePage />
+          </>
+        ) : (
+          <LoginPage />
+        )}
+      </GlobalContext.Provider>
+    </>
+  );
 }
 
-export default App
+export default App;

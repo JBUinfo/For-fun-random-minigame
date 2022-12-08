@@ -1,0 +1,18 @@
+https://alexkondov.com/tao-of-react/
+
+    Use Error Boundaries
+
+    Testing
+        Test Correct Rendering
+        Validate State & Events
+        Test Edge Cases
+        Write Integration Tests
+
+    Use tailwind
+
+    Use a Data Fetching Library
+        useQuery
+        https://swr.vercel.app/es-ES
+        https://ahooks.js.org/hooks/use-request/index
+        https://usehooks.com/
+        https://react-hooks-library.vercel.app/

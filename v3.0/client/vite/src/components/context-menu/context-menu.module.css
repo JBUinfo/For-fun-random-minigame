@@ -1,0 +1,20 @@
+.contextMenu-container {
+  width: 100px;
+  height: 117px;
+  background-color: aliceblue;
+  color: black;
+  position: absolute;
+  font-size: smaller;
+}
+
+.contextMenu-container ul {
+  padding: unset;
+  margin: unset;
+  margin-top: 6px;
+  margin-left: 8px;
+}
+
+.contextMenu-container ul li {
+  line-height: 17px;
+  list-style: none;
+}
