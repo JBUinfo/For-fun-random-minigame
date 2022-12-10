@@ -19,9 +19,9 @@ Here is my TODO list:
     Done - 3.0 - Use absolute paths
     - Apply the rules described here: https://alexkondov.com/tao-of-react/
     - Write comments
-    - Apply testing (Cypress, Jest)
+    - Apply testing (Cypress)
         -End to end - Cypress
-        -Unit tests - Jest
+        -Unit tests - Vitest
     
     #NodeJS
     Done - 2.0 - Indent code (With Prettier VScode extension)
@@ -30,7 +30,6 @@ Here is my TODO list:
     - Use typescript (NestJS)
     - Use .env
     - Apply testing
-        -Unit tests - Jest
         -Unit tests - NodeJS v18
         -Integration tests??
         
