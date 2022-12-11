@@ -8,7 +8,7 @@ import { IPokemonStats } from "./requests";
 export const handleMouseMoveToContextMenu = (
   event: React.MouseEvent,
   data: IPokemonStats,
-  statsMenu: Root
+  statsMenu: Root | null
 ): IInputContextMenu => {
   return {
     show: true,
@@ -18,7 +18,7 @@ export const handleMouseMoveToContextMenu = (
   };
 };
 export const handleMouseLeaveToContextMenu = (
-  statsMenu: Root
+  statsMenu: Root | null
 ): IInputContextMenu => {
   return {
     show: false,

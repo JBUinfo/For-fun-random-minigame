@@ -10,7 +10,7 @@ export interface ISwapPokemon {
 
 export interface IInitialState {
   UserID: number;
-  statsMenu: Root;
+  statsMenu: Root | null;
   dataModal: IDataModal;
   updateInventory: boolean;
   swapPokemons: ISwapPokemon;
@@ -28,7 +28,7 @@ export interface IContext {
 
 export const initialState: IInitialState = {
   UserID: -1,
-  statsMenu: createRoot(document.getElementById("statsMenu")!),
+  statsMenu: null,
   updateInventory: false, //new pokemon added
   dataModal: {
     show: false,
@@ -49,7 +49,10 @@ export const reducer = (
     case dispatch_types.SET_USER_ID:
       return { ...state, UserID: action.payload };
     case dispatch_types.SET_STATS_MENU:
-      return { ...state, statsMenu: action.payload };
+      return {
+        ...state,
+        statsMenu: createRoot(document.getElementById("statsMenu")!),
+      };
     case dispatch_types.SET_DATA_MODAL:
       return { ...state, dataModal: { show: true, ...action.payload } };
     case dispatch_types.CLOSE_MODAL:

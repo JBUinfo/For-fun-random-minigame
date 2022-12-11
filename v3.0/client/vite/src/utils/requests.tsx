@@ -28,13 +28,15 @@ export interface IResponse {
   error: any | null;
 }
 
-const getRequest = async (url: string): Promise<Response> => {
+const getRequest = async (url: string): Promise<IResponse> => {
   return await fetch(`${ENV_URL}${url}`, {
     method: "GET",
-  });
+  })
+    .then(async (e) => await e.json())
+    .catch(() => ({ data: null, error: "Error in request" }));
 };
 
-const postRequest = async (url: string, body: string): Promise<Response> => {
+const postRequest = async (url: string, body: string): Promise<IResponse> => {
   return await fetch(`${ENV_URL}${url}`, {
     method: "POST",
     headers: {
@@ -42,62 +44,64 @@ const postRequest = async (url: string, body: string): Promise<Response> => {
       "Content-Type": "application/json",
     },
     body,
-  });
+  })
+    .then(async (e) => await e.json())
+    .catch(() => ({ data: null, error: "Error in request" }));
 };
 
 export const getPokemonsEnemies = async (): Promise<IResponse> => {
-  const res: Response = await getRequest("/getRandomEnemies");
-  return await res.json();
+  const res: IResponse = await getRequest("/getRandomEnemies");
+  return res;
 };
 
 export const requestLogin = async ({
   nick,
   pass,
 }: IUserPass): Promise<IResponse> => {
-  const res: Response = await postRequest(
+  const res: IResponse = await postRequest(
     "/login",
     JSON.stringify({ nick, pass })
   );
-  return await res.json();
+  return res;
 };
 
 export const requestRegister = async ({
   nick,
   pass,
 }: IUserPass): Promise<IResponse> => {
-  const res: Response = await postRequest(
+  const res: IResponse = await postRequest(
     "/register",
     JSON.stringify({ nick, pass })
   );
-  return await res.json();
+  return res;
 };
 
 export const getPokemonsBattle = async (UserID: number): Promise<IResponse> => {
-  const res: Response = await postRequest(
+  const res: IResponse = await postRequest(
     "/getPokemonsBattle",
     JSON.stringify({ user_id: UserID })
   );
-  return await res.json();
+  return res;
 };
 
 export const getPokemonsInventory = async (
   UserID: number
 ): Promise<IResponse> => {
-  const res: Response = await postRequest(
+  const res: IResponse = await postRequest(
     "/getPokemonsInventory",
     JSON.stringify({ user_id: UserID })
   );
-  return await res.json();
+  return res;
 };
 
 export const updateLevelsAndPlays = async (
   UserID: number
 ): Promise<IResponse> => {
-  const res: Response = await postRequest(
+  const res: IResponse = await postRequest(
     "/updateLevelsAndPlays",
     JSON.stringify({ user_id: UserID })
   );
-  return await res.json();
+  return res;
 };
 
 export const requestSwapPokemon = async ({
@@ -105,7 +109,7 @@ export const requestSwapPokemon = async ({
   battle,
   UserID,
 }: ISwapRequest): Promise<IResponse> => {
-  const res: Response = await postRequest(
+  const res: IResponse = await postRequest(
     "/swapPokemons",
     JSON.stringify({
       user_id: UserID,
@@ -113,5 +117,5 @@ export const requestSwapPokemon = async ({
       battle,
     })
   );
-  return await res.json();
+  return res;
 };
