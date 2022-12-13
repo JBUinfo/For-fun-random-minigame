@@ -102,6 +102,7 @@ app.post("/getPokemonsInventory", async (req, res) => {
 });
 
 app.get("/getRandomEnemies", async (_, res) => {
+  console.log(1);
   const pokemons = await resolvers.getRandomEnemies();
   res.send(pokemons);
 });

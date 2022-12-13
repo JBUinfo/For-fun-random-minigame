@@ -1,3 +1,12 @@
+import {
+  afterEach,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from "vitest";
 import Battlefield, {
   attack,
   calcMean,
@@ -8,23 +17,31 @@ import Battlefield, {
   IHandleAttack,
   requestPokemonsEnemy,
 } from "./battlefield.component";
-import { IPokemonStats, IResponse } from "@utils/requests";
 import { fetch } from "cross-fetch";
-import createFetchMock from "vitest-fetch-mock";
 import {
-  afterEach,
-  beforeAll,
-  beforeEach,
-  describe,
-  expect,
-  it,
-  test,
-  vi,
-} from "vitest";
+  act,
+  render,
+  fireEvent,
+  cleanup,
+  RenderResult,
+  screen,
+  waitFor,
+} from "@testing-library/react";
+
+import createFetchMock from "vitest-fetch-mock";
+import { GlobalContext, IContext, initialState } from "@contexts/contexts";
+import { IPokemonStats, IResponse } from "@utils/requests";
+import { dispatch_types } from "@contexts/dispatchs";
+import React, { ReactElement, useEffect } from "react";
+
 global.fetch = fetch;
 const fetchMock = createFetchMock(vi);
 fetchMock.enableMocks();
 
+const useEffectMock: Function = vi.fn();
+beforeAll(() => {
+  vi.spyOn(React, "useEffect").mockImplementation((e) => useEffectMock());
+});
 const UserID = 1;
 let examplePokemonStats: IPokemonStats = {
   hp: 100,
@@ -38,11 +55,18 @@ let examplePokemonStats: IPokemonStats = {
   evolution_level: 1,
 };
 
+vi.mock("@contexts/GlobalContext", () => ({
+  useContext: () => ({
+    state: initialState,
+    dispatch: vi.fn(),
+  }),
+}));
+
+afterEach(() => {
+  Math.floor = originalRandom;
+});
 const originalRandom = Math.floor;
 describe("Battlefield File", (): void => {
-  afterEach(() => {
-    Math.floor = originalRandom;
-  });
   /*beforeAll(async () => {
     // Make the fetch request and save the results to a global variable
     let res2 = await getPokemonsUser(UserID);
@@ -414,9 +438,28 @@ describe("Battlefield File", (): void => {
       expect(spyCustomDispatch).not.toHaveBeenCalled();
     });
   });
+
   describe("Battlefield Component", (): void => {
-    it("should be a JSX.Element", (): void => {
-      expect(typeof Battlefield).toBe("object");
+    it("renders Battlefield component", async () => {
+      vi.useFakeTimers();
+      const dispatch = vi.fn();
+      const useContextMock: any = (e: any) => ({
+        state: initialState,
+        dispatch,
+      });
+      vi.spyOn(React, "useContext").mockImplementation(useContextMock);
+
+      const setPokemonsEnemy = vi.fn();
+      const useStateMock: any = (useState: any) => [useState, setPokemonsEnemy];
+      vi.spyOn(React, "useState").mockImplementation(useStateMock);
+      const { rerender, getByAltText, getByText, findAllByTestId } = render(
+        Battlefield()
+      );
+      expect(React.useContext).toHaveBeenCalledTimes(1);
+      expect(React.useState).toHaveBeenCalledTimes(2);
+      expect(React.useContext).toHaveBeenCalledOnce();
+      await rerender(Battlefield());
+      const userPokemons = screen.getByRole("list");
     });
   });
 });

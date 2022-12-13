@@ -200,11 +200,11 @@ export const handleClickAttack = async ({
 };
 
 const Battlefield = (): JSX.Element => {
-  const { state, dispatch }: IContext = useContext(GlobalContext);
-  const [pokemonsEnemy, setPokemonsEnemy] = useState<IPokemonStats[]>([]);
-  const [pokemonsUser, setPokemonsUser] = useState<IPokemonStats[]>([]);
+  const { state, dispatch }: IContext = React.useContext(GlobalContext);
+  const [pokemonsEnemy, setPokemonsEnemy] = React.useState<IPokemonStats[]>([]);
+  const [pokemonsUser, setPokemonsUser] = React.useState<IPokemonStats[]>([]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (state.swapPokemons.battle === -1) {
       (async () => {
         let res2 = await getPokemonsUser(state.UserID);
@@ -226,7 +226,7 @@ const Battlefield = (): JSX.Element => {
     }
   }, [state.UserID, pokemonsEnemy.length, dispatch, state.swapPokemons.battle]);
 
-  return useMemo(() => {
+  return React.useMemo(() => {
     return (
       <>
         <div className={styles["battleflied-container"]}>
@@ -236,6 +236,7 @@ const Battlefield = (): JSX.Element => {
                 const percentageHP = (e.actualHP * 100) / e.hp;
                 return (
                   <div
+                    data-testid="user-pokemon-battlefield"
                     onClick={() =>
                       customDispatch(dispatch, {
                         type: dispatch_types.SET_SWAP_POKEMON_BATTLE,
@@ -356,4 +357,4 @@ const Battlefield = (): JSX.Element => {
   }, [pokemonsEnemy, pokemonsUser, dispatch, state.statsMenu, state.UserID]);
 };
 
-export default memo(Battlefield);
+export default Battlefield;
