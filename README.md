@@ -17,6 +17,7 @@ Here is my TODO list:
     Done - 3.0 - CRA to Vite and JS to TS
     Done - 3.0 - Use .env file
     Done - 3.0 - Use absolute paths
+    Done - 3.0 - Added Tailwind
     - Apply the rules described here: https://alexkondov.com/tao-of-react/
     - Write comments
     - Apply testing (Cypress)
