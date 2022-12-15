@@ -26,20 +26,30 @@ const onClose = (dispatch: React.Dispatch<IAction>): void => {
 const Modal = (): JSX.Element => {
   const { state, dispatch }: IContext = useContext(GlobalContext);
   return state.dataModal.show ? (
-    <div className={styles["modal-container"]}>
+    <div
+      className={
+        "flex justify-center items-center justify-center text-black absolute z-10 w-screen h-screen top-0 left-0"
+      }
+    >
       <div
         style={{
           backgroundColor: selectColor(state.dataModal.backgroundColor),
         }}
-        className={styles["center-box-modal"]}
+        className={
+          "absolute w-[40vw] h-52 bg-green-300 rounded-lg overflow-hidden"
+        }
       >
-        <div className={styles["text-box-modal"]}>
+        <div
+          className={
+            "flex justify-center items-center border-b text-center h-5/6"
+          }
+        >
           <div style={{ width: "80%" }}>{state.dataModal.text}</div>
         </div>
-        <div className={styles["button-box-modal"]}>
+        <div className={"text-end bg-lime-300"}>
           <button
             onClick={() => onClose(dispatch)}
-            className={styles["modal-button"]}
+            className={"border-0 rounded-none w-24 h-10 bg-red-600"}
           >
             Close
           </button>

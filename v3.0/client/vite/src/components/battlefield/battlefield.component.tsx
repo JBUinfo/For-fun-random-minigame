@@ -11,7 +11,7 @@ import {
   IResponse,
   updateLevelsAndPlays,
 } from "@utils/requests";
-import React, { memo, useContext, useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import ContextMenu from "@components/context-menu/context-menu.component";
 import { customDispatch, dispatch_types } from "@contexts/dispatchs";
 import { IDataModal } from "@components/modal/modal.component";
@@ -200,11 +200,11 @@ export const handleClickAttack = async ({
 };
 
 const Battlefield = (): JSX.Element => {
-  const { state, dispatch }: IContext = React.useContext(GlobalContext);
-  const [pokemonsEnemy, setPokemonsEnemy] = React.useState<IPokemonStats[]>([]);
-  const [pokemonsUser, setPokemonsUser] = React.useState<IPokemonStats[]>([]);
+  const { state, dispatch }: IContext = useContext(GlobalContext);
+  const [pokemonsEnemy, setPokemonsEnemy] = useState<IPokemonStats[]>([]);
+  const [pokemonsUser, setPokemonsUser] = useState<IPokemonStats[]>([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (state.swapPokemons.battle === -1) {
       (async () => {
         let res2 = await getPokemonsUser(state.UserID);
@@ -226,24 +226,31 @@ const Battlefield = (): JSX.Element => {
     }
   }, [state.UserID, pokemonsEnemy.length, dispatch, state.swapPokemons.battle]);
 
-  return React.useMemo(() => {
+  return useMemo(() => {
     return (
       <>
-        <div className={styles["battleflied-container"]}>
-          <div className={styles["battle-container"]}>
-            <div className={styles["middle-battle"]}>
+        <div
+          className={"max-md:h-[90vh] h-full flex flex-col grow bg-green-500"}
+        >
+          <div className={"h-5/6 flex flex-row"}>
+            <div
+              className={
+                "max-md:border-r-0 max-md:border-b-1 max-md:w-full h-full flex flex-col w-1/2 justify-center border-r"
+              }
+            >
               {pokemonsUser.map((e, i) => {
                 const percentageHP = (e.actualHP * 100) / e.hp;
                 return (
                   <div
-                    data-testid="user-pokemon-battlefield"
                     onClick={() =>
                       customDispatch(dispatch, {
                         type: dispatch_types.SET_SWAP_POKEMON_BATTLE,
                         payload: e.id,
                       })
                     }
-                    className={styles["row-in-battle"]}
+                    className={
+                      "max-md:h-24 w-full h-1/5 grid justify-center justify-center"
+                    }
                     key={i}
                   >
                     <div
@@ -261,23 +268,27 @@ const Battlefield = (): JSX.Element => {
                           handleMouseLeaveToContextMenu(state.statsMenu)
                         )
                       }
-                      className={styles["container-pokemon-battle"]}
+                      className={"flex flex-row w-80"}
                     >
-                      <div className={styles["box-pokemon-battle"]}>
-                        <div className={styles["img-battle-box"]}>
+                      <div className={"flex flex-col justify-center w-1/2"}>
+                        <div
+                          className={
+                            "max-md:flex max-md:items-center max-md:justify-center"
+                          }
+                        >
                           <img
-                            className={styles["img-pokemon-battlefield"]}
+                            className={"max-md:h-24 max-md:w-24 h-36"}
                             alt={e.name}
                             src={`${ENV_URL}/image/${e.pokemon_id}`}
                           />
                         </div>
                       </div>
-                      <div className={styles["box-pokemon-battle"]}>
+                      <div className={"flex flex-col justify-center w-1/2"}>
                         <div>{e.name}</div>
                         <div>
                           HP
                           <div
-                            className={styles["hp-bar"]}
+                            className={"h-5 bg-green-900"}
                             style={{ width: `${percentageHP}%` }}
                           ></div>
                         </div>
@@ -287,11 +298,20 @@ const Battlefield = (): JSX.Element => {
                 );
               })}
             </div>
-            <div className={styles["middle-battle"]}>
+            <div
+              className={
+                "max-md:border-r-0 max-md:border-b-1 max-md:w-full h-full flex flex-col w-1/2 justify-center border-r"
+              }
+            >
               {pokemonsEnemy.map((e, i) => {
                 const percentageHP = (e.actualHP * 100) / e.hp;
                 return (
-                  <div className={styles["row-in-battle"]} key={i}>
+                  <div
+                    className={
+                      "max-md:h-24 w-full h-1/5 grid justify-center justify-center"
+                    }
+                    key={i}
+                  >
                     <div
                       onMouseMove={(event) =>
                         ContextMenu(
@@ -307,22 +327,26 @@ const Battlefield = (): JSX.Element => {
                           handleMouseLeaveToContextMenu(state.statsMenu)
                         )
                       }
-                      className={styles["container-pokemon-battle"]}
+                      className={"flex flex-row w-80"}
                     >
-                      <div className={styles["box-pokemon-battle"]}>
+                      <div className={"flex flex-col justify-center w-1/2"}>
                         <div>{e.name}</div>
                         <div>
                           HP
                           <div
-                            className={styles["hp-bar"]}
+                            className={"h-5 bg-green-900"}
                             style={{ width: `${percentageHP}%` }}
                           ></div>
                         </div>
                       </div>
-                      <div className={styles["box-pokemon-battle"]}>
-                        <div className={styles["img-battle-box"]}>
+                      <div className={"flex flex-col justify-center w-1/2"}>
+                        <div
+                          className={
+                            "max-md:flex max-md:items-center max-md:justify-center"
+                          }
+                        >
                           <img
-                            className={styles["img-pokemon-battlefield"]}
+                            className={"max-md:h-24 max-md:w-24 h-36"}
                             alt={e.name}
                             src={`${ENV_URL}/image/${e.pokemon_id}`}
                           />
@@ -334,7 +358,7 @@ const Battlefield = (): JSX.Element => {
               })}
             </div>
           </div>
-          <div className={styles["buttons-container"]}>
+          <div className={"h-1/6 flex flex-row"}>
             <button
               onClick={() =>
                 handleClickAttack({
@@ -346,7 +370,9 @@ const Battlefield = (): JSX.Element => {
                   dispatch,
                 })
               }
-              className={styles["attack-button"]}
+              className={
+                "hover:bg-red-700 w-full f-full rounded-none border-none cursor-pointer bg-red-600 p-0 text-white font-bold"
+              }
             >
               ATTACK
             </button>

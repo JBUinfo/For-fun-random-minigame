@@ -43,7 +43,7 @@ const HomePage = (): JSX.Element => {
   return useMemo(() => {
     return (
       <>
-        <div className={styles["home_container"]}>
+        <div className={"max-md:flex-col flex h-screen w-screen"}>
           <Inventory />
           <Battlefield />
         </div>

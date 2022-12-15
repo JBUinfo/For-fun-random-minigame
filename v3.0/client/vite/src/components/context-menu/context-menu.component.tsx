@@ -33,23 +33,29 @@ const ContextMenu = ({
   coordenates,
   statsMenu,
 }: IInputContextMenu): void => {
+  console.log(statsMenu);
+
   if (statsMenu) {
     const dom = show ? (
       <div
-        className={styles["contextMenu-container"]}
+        className={
+          "w-[100px] h-[117px] text-black absolute text-xs bg-slate-300"
+        }
         style={{
           backgroundImage: `url(${background})`,
           top: coordenates.y + 20,
           left: coordenates.x + 20,
         }}
       >
-        <ul>
-          <li>ID: {data.pokemon_id}</li>
-          <li>HP: {data.actualHP}</li>
-          <li>Level: {data.level}</li>
-          <li>Speed: {data.velocity}</li>
-          <li>Power: {data.power}</li>
-          <li>Ev. level: {data.evolution_level}</li>
+        <ul className="p-0 m-0 mt-1.5 ml-2">
+          <li className="leading-4 list-none">ID: {data.pokemon_id}</li>
+          <li className="leading-4 list-none">HP: {data.actualHP}</li>
+          <li className="leading-4 list-none">Level: {data.level}</li>
+          <li className="leading-4 list-none">Speed: {data.velocity}</li>
+          <li className="leading-4 list-none">Power: {data.power}</li>
+          <li className="leading-4 list-none">
+            Ev. level: {data.evolution_level}
+          </li>
         </ul>
       </div>
     ) : (

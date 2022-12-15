@@ -22,7 +22,7 @@ function App(): JSX.Element {
         payload: createRoot(document.getElementById("statsMenu")!),
       });
     }
-  }, []);
+  }, [state.UserID]);
   return (
     <>
       <GlobalContext.Provider value={{ state, dispatch }}>

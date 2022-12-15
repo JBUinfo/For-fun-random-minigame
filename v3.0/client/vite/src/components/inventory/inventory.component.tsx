@@ -44,7 +44,11 @@ const Inventory = () => {
   return useMemo(() => {
     return (
       <>
-        <div className={styles["inventory-container"]}>
+        <div
+          className={
+            "max-md:max-w-none max-md:flex-row max-md:max-h-20 max-md:w-full max-md:overflow-x-scroll h-full flex flex-col grow overflow-y-scroll max-w-[240px] bg-emerald-900"
+          }
+        >
           {pokemonsUser.map((e, i) => (
             <div
               onClick={() =>
@@ -61,11 +65,13 @@ const Inventory = () => {
               onMouseLeave={() =>
                 ContextMenu(handleMouseLeaveToContextMenu(state.statsMenu))
               }
-              className={styles["pokemon-in-inventory"]}
+              className={
+                "max-md:border-b-0 max-md:border-r max-md:p-2.5  h-14 w-full flex flex-row items-center justify-center border-b text-white"
+              }
               key={i}
             >
               <img
-                className={styles["img-pokemon-inventory"]}
+                className={"max-h-full"}
                 alt={e.name}
                 src={`${ENV_URL}/image/${e.pokemon_id}`}
               />

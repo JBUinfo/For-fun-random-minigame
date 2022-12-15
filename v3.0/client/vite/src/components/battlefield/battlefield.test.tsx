@@ -1,12 +1,4 @@
-import {
-  afterEach,
-  beforeAll,
-  beforeEach,
-  describe,
-  expect,
-  it,
-  vi,
-} from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import Battlefield, {
   attack,
   calcMean,
@@ -18,30 +10,15 @@ import Battlefield, {
   requestPokemonsEnemy,
 } from "./battlefield.component";
 import { fetch } from "cross-fetch";
-import {
-  act,
-  render,
-  fireEvent,
-  cleanup,
-  RenderResult,
-  screen,
-  waitFor,
-} from "@testing-library/react";
-
+import { render, screen } from "@testing-library/react";
 import createFetchMock from "vitest-fetch-mock";
-import { GlobalContext, IContext, initialState } from "@contexts/contexts";
+import { initialState } from "@contexts/contexts";
 import { IPokemonStats, IResponse } from "@utils/requests";
-import { dispatch_types } from "@contexts/dispatchs";
-import React, { ReactElement, useEffect } from "react";
-
+import React from "react";
 global.fetch = fetch;
 const fetchMock = createFetchMock(vi);
 fetchMock.enableMocks();
 
-const useEffectMock: Function = vi.fn();
-beforeAll(() => {
-  vi.spyOn(React, "useEffect").mockImplementation((e) => useEffectMock());
-});
 const UserID = 1;
 let examplePokemonStats: IPokemonStats = {
   hp: 100,
@@ -441,25 +418,34 @@ describe("Battlefield File", (): void => {
 
   describe("Battlefield Component", (): void => {
     it("renders Battlefield component", async () => {
-      vi.useFakeTimers();
+      vi.spyOn(React, "useEffect").mockImplementation((f) => f());
+      vi.spyOn(React, "useMemo").mockImplementation((f) => f());
+
       const dispatch = vi.fn();
       const useContextMock: any = (e: any) => ({
         state: initialState,
         dispatch,
       });
+
       vi.spyOn(React, "useContext").mockImplementation(useContextMock);
 
       const setPokemonsEnemy = vi.fn();
-      const useStateMock: any = (useState: any) => [useState, setPokemonsEnemy];
+      const arrayPokemons = [
+        examplePokemonStats,
+        examplePokemonStats,
+        examplePokemonStats,
+      ];
+      const useStateMock: any = () => [arrayPokemons, setPokemonsEnemy];
       vi.spyOn(React, "useState").mockImplementation(useStateMock);
       const { rerender, getByAltText, getByText, findAllByTestId } = render(
         Battlefield()
       );
+
       expect(React.useContext).toHaveBeenCalledTimes(1);
       expect(React.useState).toHaveBeenCalledTimes(2);
       expect(React.useContext).toHaveBeenCalledOnce();
       await rerender(Battlefield());
-      const userPokemons = screen.getByRole("list");
+      const userPokemons = screen.getAllByRole("img");
     });
   });
 });

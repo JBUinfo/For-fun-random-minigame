@@ -51,7 +51,7 @@ export const reducer = (
     case dispatch_types.SET_STATS_MENU:
       return {
         ...state,
-        statsMenu: createRoot(document.getElementById("statsMenu")!),
+        statsMenu: action.payload,
       };
     case dispatch_types.SET_DATA_MODAL:
       return { ...state, dataModal: { show: true, ...action.payload } };

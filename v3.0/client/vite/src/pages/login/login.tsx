@@ -56,10 +56,14 @@ const LoginPage = (): JSX.Element => {
   };
 
   return (
-    <div className={styles["login-container"]}>
-      <div className={styles["login-box"]}>
-        <div className={styles["login-inputs"]}>
-          <div>
+    <div
+      className={
+        "flex justify-center items-center w-screen h-screen bg-green-500"
+      }
+    >
+      <div className={"flex flex-col p-2.5 rounded-lg bg-green-700"}>
+        <div className={"p-2.5"}>
+          <div className="m-2 text-white">
             <span>User:</span>
             <input
               type="text"
@@ -79,9 +83,13 @@ const LoginPage = (): JSX.Element => {
             <span style={{ color: "red" }}>{inputError}</span>
           ) : null}
         </div>
-        <div className={styles["login-buttons"]}>
-          <button onClick={() => handleRegister()}>Register</button>
-          <button onClick={() => handleLogin()}>Login</button>
+        <div className={"flex flex-row content-between"}>
+          <button className="p-2" onClick={() => handleRegister()}>
+            Register
+          </button>
+          <button className="p-2" onClick={() => handleLogin()}>
+            Login
+          </button>
         </div>
       </div>
     </div>
