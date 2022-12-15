@@ -8,8 +8,6 @@ https://alexkondov.com/tao-of-react/
         Test Edge Cases
         Write Integration Tests
 
-    Use tailwind
-
     Use a Data Fetching Library
         useQuery
         https://swr.vercel.app/es-ES
