@@ -20,6 +20,8 @@ Here is my TODO list:
     Done - 3.0 - Added Tailwind
     Done - 4.0 - Added Apollo
     Done - 4.0 - Use useQuery with Apollo
+    Done - 4.0 - Better interface
+    - Add responsive interface
     - Apply the rules described here: https://alexkondov.com/tao-of-react/
     - Re-optimize react renders
     - Write comments
