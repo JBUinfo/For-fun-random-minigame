@@ -42,6 +42,6 @@ Here is my TODO list:
     - Use Prisma?
     - Add guards
     - Apply testing
-        -Unit tests - NodeJS v18
-        -Integration tests??
+        - Jest Unit tests
+        - Integration tests??
         
