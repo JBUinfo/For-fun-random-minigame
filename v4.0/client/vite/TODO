@@ -1,0 +1,19 @@
+Animacion o transicion de evolucion
+Añadir partidas ganadas y perdidas arriba
+Añadir animacio de bajar vida
+Colocar un VS o una pokeball en el centro
+
+    Use Error Boundaries
+
+    Testing
+        Test Correct Rendering
+        Validate State & Events
+        Test Edge Cases
+        Write Integration Tests
+
+    Use a Data Fetching Library
+        useQuery
+        https://swr.vercel.app/es-ES
+        https://ahooks.js.org/hooks/use-request/index
+        https://usehooks.com/
+        https://react-hooks-library.vercel.app/

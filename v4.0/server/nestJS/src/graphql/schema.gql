@@ -1,0 +1,28 @@
+type PokemonIDAndName {
+  id: Int!
+  name: String!
+}
+
+type PokemonData {
+  id: Int!
+  pokemon_id: PokemonIDAndName!
+  user_id: Int!
+  selected: Int!
+  hp: Int!
+  actual_hp: Int!
+  level: Int!
+  speed: Int!
+  power: Int!
+  evolution_level: Int!
+}
+
+type Query {
+  getTeamFromUserID(user_id: Int!): [PokemonData]
+  getInventoryFromUserID(user_id: Int!): [PokemonData]
+  getPokemonsName(pokemons_id: [Int!]): [PokemonIDAndName]
+}
+
+type Mutation {
+  swapInventoryTeam(pokemon_inventory: Int!, pokemon_team: Int!): [PokemonData]
+  updateUser(user_id: Int!): Int!
+}
