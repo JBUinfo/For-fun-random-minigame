@@ -20,6 +20,7 @@ Here is my TODO list:
     Done - 3.0 - Added Tailwind
     - Apply the rules described here: https://alexkondov.com/tao-of-react/
     - Write comments
+    - Add interceptors?
     - Apply testing (Cypress)
         -End to end - Cypress
         -Unit tests - Vitest
@@ -30,6 +31,8 @@ Here is my TODO list:
     - Write comments
     - Use typescript (NestJS)
     - Use .env
+    - Use Prisma?
+    - Add guards
     - Apply testing
         -Unit tests - NodeJS v18
         -Integration tests??
