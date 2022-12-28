@@ -18,19 +18,25 @@ Here is my TODO list:
     Done - 3.0 - Use .env file
     Done - 3.0 - Use absolute paths
     Done - 3.0 - Added Tailwind
+    Done - 4.0 - Added Apollo
+    Done - 4.0 - Use useQuery with Apollo
     - Apply the rules described here: https://alexkondov.com/tao-of-react/
+    - Re-optimize react renders
     - Write comments
     - Add interceptors?
     - Apply testing (Cypress)
         -End to end - Cypress
         -Unit tests - Vitest
     
-    #NodeJS
+    #Server
     Done - 2.0 - Indent code (With Prettier VScode extension)
-    - Clean code
+    Done - 4.0 - Use typescript (NestJS)
+    Done - 4.0 - Use .env
+    Done - 4.0 - Better file structure
+    Done - 4.0 - Real use of GraphQL
+    Done - 4.0 - Something like MVC
+    - Apply the rules described here: https://alexkondov.com/tao-of-node/
     - Write comments
-    - Use typescript (NestJS)
-    - Use .env
     - Use Prisma?
     - Add guards
     - Apply testing
