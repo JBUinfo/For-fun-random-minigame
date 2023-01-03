@@ -41,6 +41,7 @@ Here is my TODO list:
     - Write comments
     - Use Prisma?
     - Add guards
+    - Apply HATEOAS?
     - Apply testing
         - Jest Unit tests
         - Integration tests??
